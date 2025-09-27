@@ -323,7 +323,10 @@ namespace CoreUtils.Editor {
                     return null;
                 }
 
-                string subPath = path[prefix.Length..];
+                // Use Substring instead of the C# 8 range operator
+                string subPath = path.Substring(prefix.Length);
+                // Put this back after upgrading to unity 2021
+                //string subPath = path[prefix.Length..];
                 for (int i = 0; i < root.childCount; i++) {
                     Transform subObject = GetObjectFromPath(root.GetChild(i), subPath);
 
